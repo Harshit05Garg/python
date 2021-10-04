@@ -1,4 +1,13 @@
+def show_records():
+    record = open("record.txt", "r")
+    for line in record.readlines():
+        print(line, end="")
+    record.close()
+    return
+
+
 def employee_creation():
+    show_records()
     employee = []
     password = []
     record = open("record.txt", "a")
@@ -10,6 +19,7 @@ def employee_creation():
         print(password[-1])
         close = input("Do you want to close the program (Y/n): ")
         if close.lower() == "y":
+            record.close()
             return
 
 
