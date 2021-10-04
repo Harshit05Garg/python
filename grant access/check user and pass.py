@@ -1,11 +1,16 @@
 def employee_creation():
     employee = []
     password = []
+    record = open("record.txt", "a")
     while True:
         employee.append(input("Enter the new employee's name: "))
         password.append(input("Enter the new password name: "))
         print(employee[-1])
+        record.write(employee[-1] + " - " + password[-1] + "\n")
         print(password[-1])
+        close = input("Do you want to close the program (Y/n): ")
+        if close.lower() == "y":
+            return
 
 
 def check_user_and_pass():
