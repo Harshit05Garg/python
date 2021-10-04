@@ -8,7 +8,7 @@ def get_data():
         for line in record.readlines():
             employee.append(line.split(" - ")[0])
             password.append(line.split(" - ")[1][:-1])
-    return employee, password
+    return dict(zip(employee, password))
 
 
 def employee_creation():
@@ -22,14 +22,14 @@ def employee_creation():
 
 
 def check_user_and_pass(username, password_input):
-    employee, password = get_data()
+    credentials = get_data()
     admin_username = "kaku"
     admin_password = "harsh"
     if username == admin_username and password_input == admin_password:
         return True, "Admin"
     else:
         try:
-            if password[employee.index(username)] == password_input:
+            if credentials[username] == password_input:
                 return True, "Guest"
             else:
                 return False, "Guest"
