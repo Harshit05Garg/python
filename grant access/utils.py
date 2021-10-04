@@ -14,7 +14,7 @@ def get_data():
 def employee_creation():
     record = open("record.txt", "a")
     new_employee = st.text_input("Enter the new employee's name: ")
-    new_password = st.text_input("Enter the new password name: ")
+    new_password = st.text_input("Enter the new password name: ", type="password")
     if new_employee == "" or new_password == "":
         return
     record.write(new_employee + " - " + new_password + "\n")
