@@ -12,6 +12,11 @@ def input_user_pass():
         st.success(f"Welcome {username} {role}")
     else:
         st.error("Invalid Username or Password")
+        return
+    if role == "Admin":
+        st.write(utils.get_data()[0])
+        if st.checkbox("Add employee"):
+            utils.employee_creation()
 
 
 input_user_pass()
