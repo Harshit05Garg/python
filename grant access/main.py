@@ -5,8 +5,9 @@ importlib.reload(utils)
 
 
 def input_user_pass():
-    st_username = st.empty()
-    st_password = st.empty()
+    st_username = st.sidebar.empty()
+    st_password = st.sidebar.empty()
+    utils.view_posts()
     username = st_username.text_input("Enter the username: ")
     password = st_password.text_input("Enter the password: ", type="password")
     if username == "" or password == "":

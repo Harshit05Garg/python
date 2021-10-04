@@ -1,4 +1,13 @@
+import os
 import streamlit as st
+
+
+def view_posts():
+    for post in os.listdir("Database/"):
+        with open(f"Database/{post}") as lines:
+            st.write(post[:-4])
+            with st.expander("Read More"):
+                st.write(lines.read())
 
 
 def guest_access(name):
