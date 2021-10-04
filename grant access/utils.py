@@ -27,19 +27,16 @@ def employee_creation():
             return
 
 
-def check_user_and_pass():
+def check_user_and_pass(username, password_input):
     admin_username = "kaku"
     admin_password = "harsh"
-    username = input("Enter the username: ")
-    password_input = input("Enter the password: ")
-    if username == admin_username and password == admin_password:
-        print("Correct")
-        employee_creation()
+    if username == admin_username and password_input == admin_password:
+        return True, "Admin"
     else:
         try:
             if password[employee.index(username)] == password_input:
-                print("You are a valid user")
+                return True, "Guest"
             else:
-                print("Invalid Password")
+                return False, "Guest"
         except ValueError:
-            print("Invalid username")
+            return False, "Invalid user"
