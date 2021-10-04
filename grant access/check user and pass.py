@@ -1,15 +1,11 @@
 def show_records():
-    record = open("record.txt", "r")
-    for line in record.readlines():
-        print(line, end="")
-    record.close()
+    for name in employee:
+        print(name)
     return
 
 
 def employee_creation():
     show_records()
-    employee = []
-    password = []
     record = open("record.txt", "a")
     while True:
         employee.append(input("Enter the new employee's name: "))
@@ -27,12 +23,24 @@ def check_user_and_pass():
     admin_username = "kaku"
     admin_password = "harsh"
     username = input("Enter the username: ")
-    password = input("Enter the password: ")
+    password_input = input("Enter the password: ")
     if username == admin_username and password == admin_password:
         print("Correct")
         employee_creation()
     else:
-        print("Invalid username or password")
+        try:
+            if password[employee.index(username)] == password_input:
+                print("You are a valid user")
+            else:
+                print("Invalid Password")
+        except ValueError:
+            print("Invalid username")
 
 
+employee = []
+password = []
+with open("record.txt", "r") as record:
+    for line in record.readlines():
+        employee.append(line.split(" - ")[0])
+        password.append(line.split(" - ")[1][:-1])
 check_user_and_pass()
