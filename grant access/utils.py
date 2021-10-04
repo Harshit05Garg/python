@@ -1,6 +1,12 @@
 import streamlit as st
 
 
+def guest_access(name):
+    if st.checkbox("Add post"):
+        with open(f"Database/{name}.txt", "w") as file:
+            file.write(st.text_area("Content"))
+
+
 def get_data():
     employee = []
     password = []
