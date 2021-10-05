@@ -3,17 +3,25 @@ import streamlit as st
 
 
 def view_posts():
-    for post in os.listdir("Database/"):
-        with open(f"Database/{post}") as lines:
-            st.write(post[:-4])
+    for author in os.listdir("Database/"):
+        with open(f"Database/{author}") as file:
+            st.write(author[:-4])      # This line is to tell the author of the post
             with st.expander("Read More"):
-                st.write(lines.read())
+                posts = file.read().split("----------")
+                posts = posts[:-1]
+                for post in posts:
+                    st.write(post)
+                    st.write("---")
 
 
 def guest_access(name):
     if st.checkbox("Add post"):
-        with open(f"Database/{name}.txt", "w") as file:
-            file.write(st.text_area("Content"))
+        post = st.text_area("Content")
+        if post == "":
+            return
+        if st.button("Post"):
+            with open(f"Database/{name}.txt", "a") as file:
+                file.write(post + "\n----------\n")
 
 
 def get_data():
